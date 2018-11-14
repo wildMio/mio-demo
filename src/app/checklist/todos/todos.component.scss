@@ -1,0 +1,178 @@
+@mixin scrollBar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-button {
+    display: block;
+    width: 4px;
+    height: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.cdk-drag-preview {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cards.cdk-drop-list-dragging .card:not(.cdk-drag-placeholder),
+.container.cdk-drop-list-dragging .wrapper:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.container {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  user-select: none;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  @include scrollBar;
+}
+
+.wrapper {
+  width: 400px;
+  height: 100%;
+  margin: 0 4px;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  &:first-child {
+    margin-left: 8px;
+  }
+  &:last-child {
+    margin-right: 8px;
+  }
+}
+
+.content {
+  background-color: #414141;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  position: relative;
+  white-space: normal;
+}
+
+.header {
+  color: rgba($color: #ffffff, $alpha: 0.85);
+  flex: 0 0 auto;
+  padding: 10px 40px 8px 8px;
+  position: relative;
+  min-height: 20px;
+  > .mat-icon {
+    position: absolute;
+    top: 4px;
+    right: 2px;
+  }
+  > textarea {
+    color: rgba($color: #ffffff, $alpha: 0.85);
+    width: 100%;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    box-sizing: border-box;
+    box-shadow: none;
+    font-weight: 700;
+    margin: -4px 0;
+    min-height: 20px;
+    padding: 4px 7px;
+    resize: none;
+    max-height: 256px;
+    overflow: auto;
+    overflow-wrap: break-word;
+    line-height: 20px;
+    &:focus {
+      color: #303030;
+      background: #fff;
+      border: 1px solid #5ba4cf;
+      box-shadow: 0 0 0 1px #5ba4cf;
+    }
+  }
+}
+
+.cards {
+  flex: 1 1 auto;
+  margin-bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0 4px;
+  padding: 0 4px;
+  z-index: 1;
+  min-height: 0;
+  @include scrollBar;
+}
+
+.card {
+  background-color: #303030;
+  color: rgba($color: #ffffff, $alpha: 0.85);
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(9,45,66,.25);
+  cursor: pointer;
+  display: block;
+  margin-bottom: 8px;
+  width: 350px;
+  min-height: 80px;
+  position: relative;
+  text-decoration: none;
+  padding: 4px 8px;
+  > .mat-icon {
+    position: absolute;
+    top: 4px;
+    right: 2px;
+  }
+  > span {
+    clear: both;
+    display: block;
+    margin: 0 0 4px;
+    overflow: hidden;
+    text-decoration: none;
+    word-wrap: break-word;
+  }
+}
+
+.action {
+  border-radius: 0 0 3px 3px;
+  color: #6b808c;
+  display: block;
+  flex: 0 0 auto;
+  padding: 8px;
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+  > .mat-icon {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+  }
+  > div {
+    padding-left: 24px;
+  }
+  &:hover {
+    color: #94b1c2;
+    background-color: rgba(0, 0, 0, 0.1)
+  }
+}

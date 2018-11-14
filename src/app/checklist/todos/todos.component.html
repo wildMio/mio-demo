@@ -1,0 +1,28 @@
+<div class="container" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropc($event)">
+  <div class="wrapper" *ngFor="let category of categories" cdkDrag>
+    <div class="content">
+      <div class="header">
+        <textarea spellcheck="false" maxlength="512" dir="auto">{{category.title}}</textarea>
+        <mat-icon cdkDragHandle>control_camera</mat-icon>
+      </div>
+      <div class="cards" cdkDropList (cdkDropListDropped)="drop($event)"
+        [cdkDropListData]="category.movies" [cdkDropListConnectedTo]="listConnectedTo">
+        <div class="card" *ngFor="let movie of category.movies" cdkDrag>
+          <div>
+            <mat-checkbox></mat-checkbox>
+          </div>
+          <span>{{movie}}</span>
+          <mat-icon cdkDragHandle>control_camera</mat-icon>
+        </div>
+      </div>
+      <div class="action">
+        <mat-icon>add</mat-icon>
+        <div>新增待辦事項</div>
+      </div>
+    </div>
+  </div>
+  <button mat-raised-button>
+    <mat-icon>add</mat-icon>
+    新增分類
+  </button>
+</div>
